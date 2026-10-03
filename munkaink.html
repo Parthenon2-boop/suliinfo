@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Munkáink — Suliinfo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+  }
+  .project-card {
+    background: var(--paper);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: all 0.25s;
+  }
+  .project-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--ink);
+  }
+  .project-visual {
+    height: 210px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .project-visual img,
+  .project-visual video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.4s ease;
+  }
+  .project-card:hover .project-visual img,
+  .project-card:hover .project-visual video {
+    transform: scale(1.04);
+  }
+
+  .project-info { padding: 28px; }
+  .project-info h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .project-client {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .project-info p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin: 60px 0;
+    padding: 40px;
+    background: var(--paper);
+    border-radius: 24px;
+    border: 2px solid var(--ink);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--coral), var(--berry));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+
+  /* LIGHTBOX (kép / gif / videó popup) */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 26, 46, 0.88);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 1000;
+    cursor: zoom-out;
+    animation: lb-fade 0.2s ease;
+  }
+  .lightbox.open { display: flex; }
+  @keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .lightbox-content { cursor: default; }
+  .lightbox-content img,
+  .lightbox-content video {
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    display: block;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s;
+  }
+  .lightbox-close:hover { transform: scale(1.08); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark"></div>
+      Suliinfo
+    </a>
+    <ul class="nav-links">
+      <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+      <li><a href="folyamat.html">Folyamat</a></li>
+      <li><a href="munkaink.html" class="active">Munkáink</a></li>
+      <li><a href="rolunk.html">Rólunk</a></li>
+      <li><a href="gyik.html">GYIK</a></li>
+    </ul>
+    <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <div class="page-tag fade-in">Munkáink</div>
+    <h1 class="page-title fade-in delay-1">Néhány projekt, amit <span class="highlight">szerettünk</span> csinálni.</h1>
+    <p class="page-sub fade-in delay-2">Kis és nagyobb fejlesztések — minden mögött egy iskola vagy cég, akinek megoldottunk valamit.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Befejezett projekt</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Elégedett iskola</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Időre leadva</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Kávé közben</div>
+      </div>
+    </div>
+
+    <!-- A kártyák a lenti PROJEKTEK lista alapján generálódnak -->
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="szolgaltatasok.html">Szolgáltatások</a> ·
+    <a href="folyamat.html">Folyamat</a> ·
+    <a href="munkaink.html">Munkáink</a> ·
+    <a href="rolunk.html">Rólunk</a> ·
+    <a href="gyik.html">GYIK</a> ·
+    <a href="kapcsolat.html">Kapcsolat</a>
+  </div>
+  <div style="margin-top: 16px;">
+    Készült <span class="heart">♥</span>-tel a Suliinfo csapatától · &copy; 2026
+  </div>
+</footer>
+
+<!-- Popup (lightbox) -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Bezárás">×</button>
+  <div class="lightbox-content" id="lightboxContent"></div>
+</div>
+
+<script>
+  /* ============================================================
+     ÚJ MUNKA HOZZÁADÁSA: csak egy új elemet kell beszúrni ide.
+     A "media" lehet kép (png/jpg/gif/webp) VAGY videó (mp4/webm).
+     A típust a fájl kiterjesztése alapján a rendszer felismeri:
+       - gif/png/jpg/webp -> képként jelenik meg (a gif magától animál)
+       - mp4/webm        -> némított, ismétlődő videóként pörög
+     Opcionális "pos": a bélyegkép igazítása (pl. 'center', 'top center').
+     Ha nincs megadva: gif/videó -> 'center', álló kép -> 'top center'.
+     ============================================================ */
+  var PROJEKTEK = [
+    {
+      media: 'ai-oratervezo.gif',
+      client: 'AI eszköz · tanár',
+      title: 'AI Óratervező',
+      desc: 'Feltöltött tananyagból az AI strukturált, részletes óravázlatot generál. A tanár kiválasztja a forrásdokumentumot, megadja a témát — a többit a rendszer hozza.',
+      tags: ['AI', 'Óratervezés', 'Gemini']
+    },
+    {
+      media: 'feladatkeszito.gif',
+      client: 'AI eszköz · tanár',
+      title: 'Feladat- és vizsgakészítő',
+      desc: 'Tesztek, vizsgák és házi feladatok létrehozása AI-generált kérdésekkel. Csoporthoz rendelés, időkorlát, biztonságos vizsgamód, kérdés- és válaszkeverés.',
+      tags: ['AI', 'Vizsga', 'Automatizálás']
+    },
+    {
+      media: 'tanuloszoba.gif',
+      client: 'AI eszköz · diák',
+      title: 'Tanulószoba',
+      desc: 'Diákoknak szóló AI tanulótér: kérdezhetnek a tananyagról, fotót vagy fájlt csatolhatnak házifeladat-ellenőrzéshez — csak a tanár által jóváhagyott tartalomra korlátozva.',
+      tags: ['AI', 'Diákoknak', 'Chat']
+    },
+    {
+      media: 'ai-sablon.gif',
+      client: 'AI eszköz · titkárság',
+      title: 'AI Sablon generáló',
+      desc: 'Leírod, milyen sablon kell, és az AI legenerálja a helyes helyőrzőkkel. Finomítható, letölthető Word/PDF-be, és menthető a dokumentumkezelőbe.',
+      tags: ['AI', 'Sablon', 'Word/PDF']
+    },
+    {
+      media: 'oktoberstat.gif',
+      client: 'Titkárság · októberi statisztika',
+      title: 'KIR-STAT generátor',
+      desc: 'KRÉTA exportok feldolgozása, egyedi osztálycsoportok (pl. A-B, NYE-E-F) felismerése, majd export XLSX-be vagy PDF-be a KIR-STAT jelentéshez.',
+      tags: ['KRÉTA', 'Adatfeldolgozás', 'Export']
+    },
+    {
+      media: 'hatarozatok.png',
+      client: 'Gimnázium · belső eszköz',
+      title: 'Határozat generátor',
+      desc: 'Hivatalos határozatok (pl. 621 – különleges bánásmód) automatikus kitöltése a tanuló adataiból. Mentés Google Docs-ba vagy PDF-be, iktatószám-kezeléssel.',
+      tags: ['Automatizáció', 'PDF', 'Google Workspace']
+    },
+    {
+      media: 'mulasztasok.png',
+      client: 'Gimnázium · adminisztráció',
+      title: 'Mulasztási értesítő',
+      desc: 'Hiányzási Excel feltöltése, automatikus összesítés, majd tömeges mulasztási értesítő generálás. A kész PDF-ek egyből kiküldhetők e-mailben a szülőknek.',
+      tags: ['Excel', 'Tömeges PDF', 'E-mail']
+    },
+    {
+      media: 'tavollet.png',
+      client: 'Gimnázium · HR',
+      title: 'Távollét kezelő',
+      desc: 'Tanári szabadságok, táppénz és pótszabadság nyilvántartása egy szűrhető, kereshető felületen — jóváhagyási státuszokkal és gyors szerkesztéssel.',
+      tags: ['Nyilvántartás', 'Szűrés', 'Admin']
+    },
+    {
+      media: 'munkaido.png',
+      client: 'Gimnázium · vezetőség',
+      title: 'Munkaidő dashboard',
+      desc: 'Munkaórák összesítése személyenként, élő statisztikákkal és letölthető grafikonokkal. Több ezer bejegyzés egyetlen átlátható nézetben.',
+      tags: ['Statisztika', 'Grafikonok', 'Riport']
+    },
+    {
+      media: 'osztalyok.png',
+      client: 'Gimnázium · névsorok',
+      title: 'Osztály névsor generátor',
+      desc: 'Évfolyamonként külön spreadsheet, osztályonként munkalap — IMPORTRANGE-dzsel élő kapcsolatban. Egy kattintással nyomtatható, aláírás-oszlopos osztálynévsor.',
+      tags: ['Google Sheets', 'Automatizáció', 'Nyomtatás']
+    }
+    /* Új munka? Másold le egy fenti blokkot, és írd át.
+       Animált GIF-fel:
+    ,{
+      media: 'demo.gif',
+      client: 'Cég · bemutató',
+      title: 'Élő demó',
+      desc: 'Rövid leírás...',
+      tags: ['GIF', 'Bemutató']
+    }
+    */
+  ];
+
+  (function () {
+    var VIDEO_EXT = ['mp4', 'webm', 'ogg', 'mov'];
+
+    function ext(src) {
+      return (src.split('.').pop() || '').toLowerCase();
+    }
+    function isVideo(src) {
+      return VIDEO_EXT.indexOf(ext(src)) !== -1;
+    }
+    function defaultPos(src) {
+      return (ext(src) === 'gif' || isVideo(src)) ? 'center' : 'top center';
+    }
+
+    // Biztonságos szövegbeszúrás (idézőjelek, < > kezelése)
+    function esc(s) {
+      var d = document.createElement('div');
+      d.textContent = s == null ? '' : String(s);
+      return d.innerHTML;
+    }
+
+    // A kártyán megjelenő bélyegkép (kép vagy videó)
+    function thumbHTML(src, alt, pos) {
+      var s = esc(src), a = esc(alt);
+      var p = esc(pos || defaultPos(src));
+      var style = ' style="object-position:' + p + '"';
+      if (isVideo(src)) {
+        return '<video src="' + s + '" autoplay muted loop playsinline' + style + '></video>';
+      }
+      return '<img src="' + s + '" alt="' + a + '"' + style + '>';
+    }
+
+    function cardHTML(p) {
+      var tags = (p.tags || []).map(function (t) {
+        return '<span class="tag">' + esc(t) + '</span>';
+      }).join('');
+      return '' +
+        '<div class="project-card">' +
+          '<div class="project-visual">' + thumbHTML(p.media, p.title, p.pos) + '</div>' +
+          '<div class="project-info">' +
+            '<div class="project-client">' + esc(p.client) + '</div>' +
+            '<h3>' + esc(p.title) + '</h3>' +
+            '<p>' + esc(p.desc) + '</p>' +
+            '<div class="tags">' + tags + '</div>' +
+          '</div>' +
+        '</div>';
+    }
+
+    // Galéria felépítése
+    var grid = document.getElementById('portfolioGrid');
+    grid.innerHTML = PROJEKTEK.map(cardHTML).join('');
+
+    // Lightbox
+    var lb = document.getElementById('lightbox');
+    var lbContent = document.getElementById('lightboxContent');
+    var lbClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+      lbContent.innerHTML = '';
+      var node;
+      if (isVideo(src)) {
+        node = document.createElement('video');
+        node.src = src;
+        node.controls = true;
+        node.autoplay = true;
+        node.loop = true;
+        node.playsInline = true;
+      } else {
+        node = document.createElement('img');
+        node.src = src;
+        node.alt = alt || '';
+      }
+      lbContent.appendChild(node);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      lbContent.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    // Kattintás a bélyegképekre
+    grid.addEventListener('click', function (e) {
+      var m = e.target.closest('.project-visual img, .project-visual video');
+      if (!m) return;
+      openLightbox(m.getAttribute('src'), m.getAttribute('alt'));
+    });
+
+    lb.addEventListener('click', closeLightbox);
+    lbContent.addEventListener('click', function (e) { e.stopPropagation(); }); // a videóvezérlőkre kattintás ne zárja be
+    lbClose.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
+</script>
+
+</body>
+</html>

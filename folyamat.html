@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Folyamat — Suliinfo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 60px;
+    bottom: 60px;
+    width: 3px;
+    background: repeating-linear-gradient(to bottom, var(--ink) 0, var(--ink) 8px, transparent 8px, transparent 16px);
+  }
+  @media (max-width: 600px) {
+    .timeline::before { left: 28px; }
+  }
+
+  .step-row {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 50px;
+    position: relative;
+  }
+  @media (max-width: 600px) {
+    .step-row { gap: 20px; }
+  }
+  .step-num-circle {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 900;
+    z-index: 2;
+    position: relative;
+  }
+  @media (max-width: 600px) {
+    .step-num-circle { width: 56px; height: 56px; font-size: 22px; }
+  }
+  .step-row:nth-child(1) .step-num-circle { background: var(--coral); color: white; }
+  .step-row:nth-child(2) .step-num-circle { background: var(--sun); }
+  .step-row:nth-child(3) .step-num-circle { background: var(--mint); color: white; }
+  .step-row:nth-child(4) .step-num-circle { background: var(--sky); color: white; }
+
+  .step-content {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    padding: 28px 32px;
+    box-shadow: 6px 6px 0 var(--ink);
+    flex: 1;
+  }
+  .step-content .step-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--coral);
+    margin-bottom: 8px;
+  }
+  .step-content h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .step-content p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .step-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--cream);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border: 1px solid rgba(26, 26, 46, 0.1);
+  }
+
+  .promise-section {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 32px;
+    padding: 64px 60px;
+    margin: 60px 24px;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .promise-section { padding: 48px 28px; margin: 40px 16px; }
+  }
+  .promise-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+  }
+  .promises {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .promise {
+    text-align: left;
+  }
+  .promise-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .promise h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .promise p {
+    color: rgba(255, 248, 231, 0.7);
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark"></div>
+      Suliinfo
+    </a>
+    <ul class="nav-links">
+      <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+      <li><a href="folyamat.html" class="active">Folyamat</a></li>
+      <li><a href="munkaink.html">Munkáink</a></li>
+      <li><a href="rolunk.html">Rólunk</a></li>
+      <li><a href="gyik.html">GYIK</a></li>
+    </ul>
+    <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <div class="page-tag fade-in">Hogyan dolgozunk</div>
+    <h1 class="page-title fade-in delay-1">Az ötlettől a <span class="highlight">kész rendszerig</span>.</h1>
+    <p class="page-sub fade-in delay-2">Négy egyszerű lépés. Nincs bonyolult bürokrácia, nincs meglepetés a végén — csak egy átlátható folyamat, ami működik.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="timeline">
+
+      <div class="step-row">
+        <div class="step-num-circle">01</div>
+        <div class="step-content">
+          <div class="step-label">Első lépés</div>
+          <h3>Beszélgetés</h3>
+          <p>Elmondod, mire van szükséged. Kérdezünk, ötletelünk, megértjük a kontextust — nem csak a kérést. Sokszor menet közben jönnek a legjobb ötletek.</p>
+          <span class="step-meta">⏱️ Általában 30–60 perc</span>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num-circle">02</div>
+        <div class="step-content">
+          <div class="step-label">Második lépés</div>
+          <h3>Tervezés &amp; árajánlat</h3>
+          <p>Kiküldünk egy konkrét tervet és átlátható, fix árajánlatot. Pontosan tudni fogod, mit kapsz, mennyiért és mikorra. Nincs „rejtett költség" a végén.</p>
+          <span class="step-meta">⏱️ 2–5 munkanap</span>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num-circle">03</div>
+        <div class="step-content">
+          <div class="step-label">Harmadik lépés</div>
+          <h3>Fejlesztés</h3>
+          <p>Megépítjük a rendszert. Közben végig látod a haladást, kérheted a változtatásokat, tesztelheted a részeket. A visszajelzéseidet menet közben építjük be.</p>
+          <span class="step-meta">⏱️ 1–8 hét, projekttől függően</span>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-num-circle">04</div>
+        <div class="step-content">
+          <div class="step-label">Negyedik lépés</div>
+          <h3>Átadás &amp; támogatás</h3>
+          <p>Élesítjük a rendszert, megtanítjuk a használatát, dokumentációt adunk hozzá. És ott vagyunk akkor is, ha valami nem világos vagy később bővíteni kell.</p>
+          <span class="step-meta">⏱️ Folyamatos támogatás</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="promise-section">
+    <h2>Amit ígérünk neked.</h2>
+    <div class="promises">
+      <div class="promise">
+        <div class="promise-icon">💬</div>
+        <h4>Emberi kommunikáció</h4>
+        <p>Nem szakzsargonnal beszélünk, hanem emberi nyelven. Ha kérdezel, érthetően válaszolunk.</p>
+      </div>
+      <div class="promise">
+        <div class="promise-icon">💰</div>
+        <h4>Átlátható árazás</h4>
+        <p>Fix ár, semmi extra. Amit megbeszéltünk, annyiba kerül — ennyi.</p>
+      </div>
+      <div class="promise">
+        <div class="promise-icon">⚡</div>
+        <h4>Gyors visszajelzés</h4>
+        <p>Általában 24 órán belül válaszolunk. Nem kell napokig várnod egy emailre.</p>
+      </div>
+      <div class="promise">
+        <div class="promise-icon">🤝</div>
+        <h4>Hosszú távú kapcsolat</h4>
+        <p>Az átadás nem a vég. Bármikor visszajöhetsz módosításért, bővítésért vagy csak egy kérdéssel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-strip">
+    <div class="cta-strip-inner">
+      <h2>Készen állsz az első lépésre?</h2>
+      <p>Egy email és máris elindul a folyamat. Jelentkezz, és 24 órán belül válaszolunk.</p>
+      <a href="kapcsolat.html" class="email-button">
+        ✉️ Kezdjük el
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="szolgaltatasok.html">Szolgáltatások</a> ·
+    <a href="folyamat.html">Folyamat</a> ·
+    <a href="munkaink.html">Munkáink</a> ·
+    <a href="rolunk.html">Rólunk</a> ·
+    <a href="gyik.html">GYIK</a> ·
+    <a href="kapcsolat.html">Kapcsolat</a>
+  </div>
+  <div style="margin-top: 16px;">
+    Készült <span class="heart">♥</span>-tel a Suliinfo csapatától · &copy; 2026
+  </div>
+</footer>
+
+</body>
+</html>

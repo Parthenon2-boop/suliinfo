@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suliinfo — Iskolai szoftverek emberi módon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* HERO */
+  .hero { padding: 60px 0 100px; position: relative; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--paper);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border: 1px solid rgba(26, 26, 46, 0.08);
+    margin-bottom: 24px;
+  }
+  .hero-tag .dot {
+    width: 8px; height: 8px;
+    background: var(--mint);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 6vw, 76px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero h1 .highlight {
+    position: relative;
+    display: inline-block;
+    font-style: italic;
+  }
+  .hero h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: -4px; right: -4px;
+    height: 14px;
+    background: var(--sun);
+    z-index: -1;
+    transform: skew(-3deg) rotate(-1deg);
+  }
+  .hero p {
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    max-width: 520px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .hero-visual { position: relative; height: 480px; }
+  .float-card {
+    position: absolute;
+    background: var(--paper);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 8px 8px 0 var(--ink);
+    border: 2px solid var(--ink);
+  }
+  .card-1 { top: 20px; left: 20px; width: 220px; transform: rotate(-4deg); animation: float1 6s ease-in-out infinite; }
+  .card-2 { top: 140px; right: 0; width: 240px; background: var(--sun); transform: rotate(3deg); animation: float2 7s ease-in-out infinite; }
+  .card-3 { bottom: 40px; left: 60px; width: 200px; background: var(--mint); color: white; transform: rotate(-2deg); animation: float3 8s ease-in-out infinite; }
+  @keyframes float1 { 0%,100% { transform: rotate(-4deg) translateY(0); } 50% { transform: rotate(-4deg) translateY(-12px); } }
+  @keyframes float2 { 0%,100% { transform: rotate(3deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-16px); } }
+  @keyframes float3 { 0%,100% { transform: rotate(-2deg) translateY(0); } 50% { transform: rotate(-2deg) translateY(-10px); } }
+  .card-emoji { font-size: 28px; margin-bottom: 8px; }
+  .card-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .card-sub { font-size: 13px; opacity: 0.7; }
+
+  /* FEATURE GRID (preview cards leading to subpages) */
+  .feature-section { padding: 80px 0; }
+  .section-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--coral);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+  .section-sub {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 600px;
+    margin-bottom: 50px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .feature-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .feature-card {
+    background: var(--paper);
+    border-radius: 24px;
+    padding: 32px;
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: all 0.25s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .feature-link:hover .feature-card {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--ink);
+  }
+  .feature-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .feature-link:nth-child(1) .feature-icon { background: var(--coral); }
+  .feature-link:nth-child(2) .feature-icon { background: var(--sun); }
+  .feature-link:nth-child(3) .feature-icon { background: var(--mint); }
+  .feature-link:nth-child(4) .feature-icon { background: var(--sky); }
+  .feature-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .feature-card p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    flex-grow: 1;
+  }
+  .feature-arrow {
+    margin-top: 20px;
+    font-weight: 600;
+    color: var(--coral);
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark"></div>
+      Suliinfo
+    </a>
+    <ul class="nav-links">
+      <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+      <li><a href="folyamat.html">Folyamat</a></li>
+      <li><a href="munkaink.html">Munkáink</a></li>
+      <li><a href="rolunk.html">Rólunk</a></li>
+      <li><a href="gyik.html">GYIK</a></li>
+    </ul>
+    <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag fade-in"><span class="dot"></span> Új projekteket fogadunk</div>
+        <h1 class="fade-in delay-1">Iskolai szoftverek, <span class="highlight">emberi módon</span> elkészítve.</h1>
+        <p class="fade-in delay-2">Beléptető rendszerek, regisztrációs oldalak, határozat generálók és minden, ami egyszerűbbé teszi az iskolai mindennapokat. Egyszerű vagy összetett — mi megcsináljuk.</p>
+        <div class="hero-ctas fade-in delay-3">
+          <a href="kapcsolat.html" class="btn-primary">Beszéljünk a projektedről →</a>
+          <a href="szolgaltatasok.html" class="btn-secondary">Mit kínálunk?</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="float-card card-1">
+          <div class="card-emoji">🎫</div>
+          <div class="card-title">Beléptető rendszer</div>
+          <div class="card-sub">QR-kódos, gyors</div>
+        </div>
+        <div class="float-card card-2">
+          <div class="card-emoji">📝</div>
+          <div class="card-title">Regisztráció</div>
+          <div class="card-sub">Egyszerű űrlapok</div>
+        </div>
+        <div class="float-card card-3">
+          <div class="card-emoji">📄</div>
+          <div class="card-title">Határozat generátor</div>
+          <div class="card-sub">PDF egy kattintással</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-section">
+  <div class="container">
+    <div class="section-tag">Fedezd fel</div>
+    <h2 class="section-title">Minden, amit tudnod kell rólunk.</h2>
+    <p class="section-sub">Kattints bármelyik kártyára, hogy megismerd, hogyan dolgozunk és mit tudunk neked nyújtani.</p>
+
+    <div class="feature-grid">
+      <a href="szolgaltatasok.html" class="feature-link">
+        <div class="feature-card">
+          <div class="feature-icon">🛠️</div>
+          <h3>Szolgáltatások</h3>
+          <p>Beléptetés, regisztráció, automatizáció, weboldalak — minden, amit egy iskola vagy cég kérhet.</p>
+          <div class="feature-arrow">Megnézem →</div>
+        </div>
+      </a>
+      <a href="folyamat.html" class="feature-link">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Folyamat</h3>
+          <p>Négy egyszerű lépés az ötlettől a kész rendszerig. Nincs bonyolult bürokrácia.</p>
+          <div class="feature-arrow">Hogyan dolgozunk →</div>
+        </div>
+      </a>
+      <a href="munkaink.html" class="feature-link">
+        <div class="feature-card">
+          <div class="feature-icon">💼</div>
+          <h3>Munkáink</h3>
+          <p>Néhány projekt, amit eddig készítettünk — iskoláknak és cégeknek egyaránt.</p>
+          <div class="feature-arrow">Referenciák →</div>
+        </div>
+      </a>
+      <a href="rolunk.html" class="feature-link">
+        <div class="feature-card">
+          <div class="feature-icon">👋</div>
+          <h3>Rólunk</h3>
+          <p>Ketten vagyunk — egy fejlesztő és egy történész-informatikus tanár. Ismerj meg minket.</p>
+          <div class="feature-arrow">Bemutatkozunk →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="kapcsolat">
+  <div class="cta-strip">
+    <div class="cta-strip-inner">
+      <h2>Van egy ötleted? Beszéljünk róla.</h2>
+      <p>Egy email, egy beszélgetés — és máris elindul valami.</p>
+      <a href="kapcsolat.html" class="email-button">
+        ✉️ Lépj kapcsolatba
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="szolgaltatasok.html">Szolgáltatások</a> ·
+    <a href="folyamat.html">Folyamat</a> ·
+    <a href="munkaink.html">Munkáink</a> ·
+    <a href="rolunk.html">Rólunk</a> ·
+    <a href="gyik.html">GYIK</a> ·
+    <a href="kapcsolat.html">Kapcsolat</a>
+  </div>
+  <div style="margin-top: 16px;">
+    Készült <span class="heart">♥</span>-tel a Suliinfo csapatától · &copy; 2026
+  </div>
+</footer>
+
+</body>
+</html>

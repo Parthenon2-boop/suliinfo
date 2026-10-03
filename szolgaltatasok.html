@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Szolgáltatások — Suliinfo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--paper);
+    border-radius: 24px;
+    padding: 36px;
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: all 0.25s;
+  }
+  .service-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--ink);
+  }
+  .service-icon {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 24px;
+  }
+  .service-card:nth-child(1) .service-icon { background: var(--coral); }
+  .service-card:nth-child(2) .service-icon { background: var(--sun); }
+  .service-card:nth-child(3) .service-icon { background: var(--mint); }
+  .service-card:nth-child(4) .service-icon { background: var(--sky); }
+  .service-card:nth-child(5) .service-icon { background: var(--berry); }
+  .service-card:nth-child(6) .service-icon { background: var(--coral); }
+  .service-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .service-card > p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .service-features li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-top: 1px dashed rgba(26, 26, 46, 0.1);
+  }
+  .service-features li::before {
+    content: '✓';
+    color: var(--mint);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark"></div>
+      Suliinfo
+    </a>
+    <ul class="nav-links">
+      <li><a href="szolgaltatasok.html" class="active">Szolgáltatások</a></li>
+      <li><a href="folyamat.html">Folyamat</a></li>
+      <li><a href="munkaink.html">Munkáink</a></li>
+      <li><a href="rolunk.html">Rólunk</a></li>
+      <li><a href="gyik.html">GYIK</a></li>
+    </ul>
+    <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <div class="page-tag fade-in">Szolgáltatásaink</div>
+    <h1 class="page-title fade-in delay-1">Amit elképzelsz, <span class="highlight">megépítjük</span>.</h1>
+    <p class="page-sub fade-in delay-2">Iskoláknak és cégeknek készítünk testreszabott szoftvereket — a kicsi ötletektől a teljes rendszerekig.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">🎫</div>
+        <h3>Beléptető rendszerek</h3>
+        <p>QR-kódos és kártyás belépés, jelenléti nyilvántartás, valós idejű statisztikák. Rendezvényekre és iskolai mindennapokra is.</p>
+        <ul class="service-features">
+          <li>QR-kód generálás és olvasás</li>
+          <li>Valós idejű jelenléti lista</li>
+          <li>Statisztikák és exportálás</li>
+          <li>Mobilbarát kezelőfelület</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📝</div>
+        <h3>Regisztrációs oldalak</h3>
+        <p>Eseményekhez, jelentkezésekhez, beiratkozáshoz. Egyszerű, mobilbarát űrlapok automatikus visszaigazolással.</p>
+        <ul class="service-features">
+          <li>Egyedi űrlapmezők</li>
+          <li>Automatikus email visszaigazolás</li>
+          <li>Adatok exportálása Excelbe</li>
+          <li>Kapacitáskezelés és határidők</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📄</div>
+        <h3>Határozat generátorok</h3>
+        <p>Sablonok, automatikus kitöltés, tömeges PDF készítés. Ami eddig órákig tartott, most percek alatt készen van.</p>
+        <ul class="service-features">
+          <li>Word/PDF sablonok</li>
+          <li>Tömeges generálás</li>
+          <li>Egyedi mezők és változók</li>
+          <li>Iktatószám automatika</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Adminisztrációs eszközök</h3>
+        <p>Egyedi felületek a napi munkához: nyilvántartások, listák, exportálók, riportok — mindent egy helyen.</p>
+        <ul class="service-features">
+          <li>Egyedi adatbázis felületek</li>
+          <li>Jogosultság-kezelés</li>
+          <li>Riportok és kimutatások</li>
+          <li>Excel import/export</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>Weboldalak</h3>
+        <p>Iskolai vagy céges bemutatkozó oldalak, mikrosite-ok rendezvényekhez. Modern, gyors, könnyen kezelhető.</p>
+        <ul class="service-features">
+          <li>Reszponzív, mobilbarát design</li>
+          <li>Saját szerkesztőfelület</li>
+          <li>SEO-optimalizálás</li>
+          <li>Gyors betöltés</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🛠️</div>
+        <h3>Egyedi fejlesztés</h3>
+        <p>Van egy speciális problémád? Beszéljük meg. Ha szoftverrel megoldható, valószínűleg meg is csináljuk.</p>
+        <ul class="service-features">
+          <li>Igények pontos felmérése</li>
+          <li>Egyedi terv és árajánlat</li>
+          <li>Iteratív fejlesztés</li>
+          <li>Hosszú távú támogatás</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-strip">
+    <div class="cta-strip-inner">
+      <h2>Nem találod, amire szükséged van?</h2>
+      <p>Sokszor a legjobb megoldások egy beszélgetésből születnek. Írj nekünk — kitaláljuk együtt.</p>
+      <a href="kapcsolat.html" class="email-button">
+        ✉️ Beszéljünk
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="szolgaltatasok.html">Szolgáltatások</a> ·
+    <a href="folyamat.html">Folyamat</a> ·
+    <a href="munkaink.html">Munkáink</a> ·
+    <a href="rolunk.html">Rólunk</a> ·
+    <a href="gyik.html">GYIK</a> ·
+    <a href="kapcsolat.html">Kapcsolat</a>
+  </div>
+  <div style="margin-top: 16px;">
+    Készült <span class="heart">♥</span>-tel a Suliinfo csapatától · &copy; 2026
+  </div>
+</footer>
+
+</body>
+</html>

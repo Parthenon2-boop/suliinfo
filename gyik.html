@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GYIK — Suliinfo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .faq-layout { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .faq-categories {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+  .faq-categories h4 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .faq-categories ul {
+    list-style: none;
+    padding: 0;
+  }
+  .faq-categories li {
+    margin-bottom: 8px;
+  }
+  .faq-categories a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 14px;
+    display: block;
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+  .faq-categories a:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .faq-category-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    letter-spacing: -0.02em;
+  }
+  .faq-category-title:first-child { margin-top: 0; }
+
+  .faq-item {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .faq-item[open] {
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .faq-item summary {
+    padding: 22px 28px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 17px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 28px;
+    font-weight: 300;
+    transition: transform 0.2s;
+    color: var(--coral);
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    padding: 0 28px 24px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .faq-answer a {
+    color: var(--coral);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(255, 107, 107, 0.3);
+  }
+  .faq-answer a:hover {
+    border-bottom-color: var(--coral);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark"></div>
+      Suliinfo
+    </a>
+    <ul class="nav-links">
+      <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+      <li><a href="folyamat.html">Folyamat</a></li>
+      <li><a href="munkaink.html">Munkáink</a></li>
+      <li><a href="rolunk.html">Rólunk</a></li>
+      <li><a href="gyik.html" class="active">GYIK</a></li>
+    </ul>
+    <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <div class="page-tag fade-in">GYIK</div>
+    <h1 class="page-title fade-in delay-1">Gyakori <span class="highlight">kérdések</span>.</h1>
+    <p class="page-sub fade-in delay-2">Itt összegyűjtöttük a leggyakoribb kérdéseket. Ha mégsem találod meg a választ, írj bátran — szívesen segítünk.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="faq-layout">
+
+      <aside class="faq-categories">
+        <h4>Kategóriák</h4>
+        <ul>
+          <li><a href="#alap">Alapok</a></li>
+          <li><a href="#ar">Árazás</a></li>
+          <li><a href="#technika">Technika</a></li>
+          <li><a href="#egyuttmukodes">Együttműködés</a></li>
+        </ul>
+      </aside>
+
+      <div class="faq-content">
+
+        <h2 class="faq-category-title" id="alap">Alapok</h2>
+
+        <details class="faq-item">
+          <summary>Hogyan kezdjünk neki?</summary>
+          <div class="faq-answer">Írj egy emailt a <a href="mailto:app.suliinfo@gmail.com">app.suliinfo@gmail.com</a> címre — pár mondatban elég leírni, mire gondolsz. Mi 1–2 napon belül válaszolunk, és időpontot egyeztetünk egy beszélgetésre. Innen már gyorsan haladunk.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Csak iskoláknak dolgoztok?</summary>
+          <div class="faq-answer">Nem, cégeknek és egyesületeknek is készítünk szoftvereket. Az iskolai környezetből indultunk, de bármilyen szervezetnek tudunk segíteni, ahol egyszerű vagy összetett digitális megoldásra van szükség.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Mennyi idő alatt készül el egy rendszer?</summary>
+          <div class="faq-answer">Kisebb projektek 1–2 hét alatt elkészülnek, nagyobb rendszerek 1–2 hónapot igényelhetnek. A pontos időt a tervezési fázis után tudjuk megmondani. Sürgős esetben egyeztethetünk gyorsabb ütemtervet.</div>
+        </details>
+
+        <h2 class="faq-category-title" id="ar">Árazás</h2>
+
+        <details class="faq-item">
+          <summary>Mennyibe kerül egy projekt?</summary>
+          <div class="faq-answer">Minden projekt más, ezért egyedi árajánlatot készítünk az igények megismerése után. Egy egyszerű regisztrációs oldal pár tízezer forinttól indul, egy összetett beléptető rendszer ennek többszöröse lehet. A beszélgetés és az árajánlat mindig ingyenes.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Van rejtett költség?</summary>
+          <div class="faq-answer">Nincs. Az árajánlatban szereplő összeg fix — pontosan annyit fizetsz, amennyiben megállapodunk. Ha menet közben új igények merülnek fel, azokra előre adunk külön ajánlatot, hogy te dönthess.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Részletfizetés lehetséges?</summary>
+          <div class="faq-answer">Igen, nagyobb projekteknél általában mérföldkövekhez kötjük a fizetést — egy rész előre, egy a fejlesztés közben, egy az átadásnál. A pontos ütemezést együtt találjuk ki.</div>
+        </details>
+
+        <h2 class="faq-category-title" id="technika">Technika</h2>
+
+        <details class="faq-item">
+          <summary>Hol tároljátok az adatokat? GDPR-kompatibilis?</summary>
+          <div class="faq-answer">Minden rendszerünk megfelel a GDPR előírásainak. Az adatok európai szervereken tárolódnak, titkosítva, és csak a szükséges hozzáféréssel rendelkező személyek férhetnek hozzájuk. Az adatkezelési részleteket projektenként egyeztetjük.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Milyen technológiákat használtok?</summary>
+          <div class="faq-answer">Modern, megbízható eszközöket: a frontend oldalon JavaScript keretrendszereket, a backendben Pythont vagy Node.js-t, adatbázisként PostgreSQL-t vagy hasonlót. Mindig az adott projekthez legjobban illő megoldást választjuk — nem ragaszkodunk egy receptúrához.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>A miénk lesz a forráskód?</summary>
+          <div class="faq-answer">Igen. Az átadás után a teljes forráskód a tiéd, te döntöd el, mit kezdesz vele. Ha mi tartjuk karban, az csak egy szolgáltatás, nem függőség.</div>
+        </details>
+
+        <h2 class="faq-category-title" id="egyuttmukodes">Együttműködés</h2>
+
+        <details class="faq-item">
+          <summary>Mi van, ha módosítani kell a kész rendszeren?</summary>
+          <div class="faq-answer">Az átadás után is támogatjuk a rendszert. Kisebb módosítások általában a megállapodott támogatási csomag részei, nagyobb fejlesztésekre külön ajánlatot adunk. Sosem hagyjuk magára az ügyfelünket.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Hogyan tartjuk a kapcsolatot a fejlesztés alatt?</summary>
+          <div class="faq-answer">Ahogy te szereted: emailben, telefonon, vagy akár chates eszközökkel. Általában heti 1 rövid frissítést küldünk a haladásról, és bármikor elérhetők vagyunk kérdésekre.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Mi van, ha menet közben meggondolom magam?</summary>
+          <div class="faq-answer">Ez teljesen normális — a jó ötletek sokszor menet közben formálódnak. Próbálunk rugalmasak lenni: ha kisebb a változás, beleépítjük; ha nagyobb, együtt átbeszéljük, mit jelent ez az időre és a költségre nézve.</div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-strip">
+    <div class="cta-strip-inner">
+      <h2>Nem találtad meg a választ?</h2>
+      <p>Semmi gond — a legtöbb jó kérdés akkor születik, amikor még nem tudjuk pontosan, mit akarunk. Írj, és válaszolunk.</p>
+      <a href="kapcsolat.html" class="email-button">
+        ✉️ Kérdezz bátran
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="szolgaltatasok.html">Szolgáltatások</a> ·
+    <a href="folyamat.html">Folyamat</a> ·
+    <a href="munkaink.html">Munkáink</a> ·
+    <a href="rolunk.html">Rólunk</a> ·
+    <a href="gyik.html">GYIK</a> ·
+    <a href="kapcsolat.html">Kapcsolat</a>
+  </div>
+  <div style="margin-top: 16px;">
+    Készült <span class="heart">♥</span>-tel a Suliinfo csapatától · &copy; 2026
+  </div>
+</footer>
+
+</body>
+</html>

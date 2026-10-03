@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapcsolat — Suliinfo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* LEFT SIDE - Info */
+  .contact-info h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .contact-info > p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .contact-method {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 16px;
+    box-shadow: 4px 4px 0 var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .contact-method:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .contact-method-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .contact-method:nth-child(1) .contact-method-icon { background: var(--coral); }
+  .contact-method:nth-child(2) .contact-method-icon { background: var(--sun); }
+  .contact-method:nth-child(3) .contact-method-icon { background: var(--mint); }
+
+  .contact-method-info .label {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .contact-method-info .value {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .response-promise {
+    margin-top: 32px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(107, 203, 119, 0.15), rgba(255, 217, 61, 0.15));
+    border-radius: 12px;
+    border-left: 4px solid var(--mint);
+  }
+  .response-promise strong {
+    color: var(--ink);
+  }
+
+  /* RIGHT SIDE - Form */
+  .contact-form {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 24px;
+    padding: 36px;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .contact-form h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .contact-form > p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .form-group label .required {
+    color: var(--coral);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid rgba(26, 26, 46, 0.15);
+    border-radius: 12px;
+    background: white;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--coral);
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+  }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 500px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--coral);
+    color: white;
+    padding: 16px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 16px;
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: all 0.2s;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 8px;
+  }
+  .submit-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .form-note {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .success-message {
+    display: none;
+    background: linear-gradient(135deg, rgba(107, 203, 119, 0.2), rgba(255, 217, 61, 0.15));
+    border: 2px solid var(--mint);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 16px;
+    text-align: center;
+  }
+  .success-message.show { display: block; }
+  .success-message h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark"></div>
+      Suliinfo
+    </a>
+    <ul class="nav-links">
+      <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+      <li><a href="folyamat.html">Folyamat</a></li>
+      <li><a href="munkaink.html">Munkáink</a></li>
+      <li><a href="rolunk.html">Rólunk</a></li>
+      <li><a href="gyik.html">GYIK</a></li>
+    </ul>
+    <a href="kapcsolat.html" class="nav-cta active">Kapcsolat</a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <div class="page-tag fade-in">Kapcsolat</div>
+    <h1 class="page-title fade-in delay-1">Beszéljünk a <span class="highlight">projektedről</span>.</h1>
+    <p class="page-sub fade-in delay-2">Egy email, egy beszélgetés — és máris elindul valami. Az első konzultáció ingyenes és kötelezettségmentes.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <div class="contact-info">
+        <h2>Hogyan érhetsz el minket?</h2>
+        <p>Több módon is felveheted velünk a kapcsolatot. Válaszd azt, ami neked kényelmesebb — mi mindenhol válaszolunk.</p>
+
+        <a href="mailto:suliinfo63@gmail.com" class="contact-method">
+          <div class="contact-method-icon">✉️</div>
+          <div class="contact-method-info">
+            <div class="label">Email</div>
+            <div class="value">app.suliinfo@gmail.com</div>
+          </div>
+        </a>
+
+        <a href="kapcsolat.html#urlap" class="contact-method">
+          <div class="contact-method-icon">📝</div>
+          <div class="contact-method-info">
+            <div class="label">Űrlap</div>
+            <div class="value">Töltsd ki itt jobbra</div>
+          </div>
+        </a>
+
+        <a href="folyamat.html" class="contact-method">
+          <div class="contact-method-icon">⚡</div>
+          <div class="contact-method-info">
+            <div class="label">Tudd meg előre</div>
+            <div class="value">Hogyan dolgozunk</div>
+          </div>
+        </a>
+
+        <div class="response-promise">
+          <strong>⏱️ Válaszidő:</strong> Általában 24 órán belül válaszolunk munkanapokon. Hétvégén kicsit lassabban, de semmiképp sem hagyunk üzenet nélkül.
+        </div>
+      </div>
+
+      <div class="contact-form" id="urlap">
+        <h3>Mesélj a projektedről</h3>
+        <p>Töltsd ki az űrlapot, és néhány órán belül válaszolunk.</p>
+
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Név <span class="required">*</span></label>
+              <input type="text" name="name" required placeholder="A te neved">
+            </div>
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" name="email" required placeholder="email@cim.hu">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Iskola / Cég neve</label>
+            <input type="text" name="organization" placeholder="Pl. Kovács Lajos Gimnázium">
+          </div>
+
+          <div class="form-group">
+            <label>Mire van szükséged? <span class="required">*</span></label>
+            <select name="service" required>
+              <option value="">Válassz egyet...</option>
+              <option>Beléptető rendszer</option>
+              <option>Regisztrációs oldal</option>
+              <option>Határozat generátor</option>
+              <option>Adminisztrációs eszköz</option>
+              <option>Weboldal</option>
+              <option>Egyedi fejlesztés</option>
+              <option>Még nem tudom — beszéljük meg</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Üzenet <span class="required">*</span></label>
+            <textarea name="message" required placeholder="Pár mondatban írd le, mit szeretnél, és mire használnád..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Küldés ✉️</button>
+
+          <div class="form-note">A küldés gomb megnyitja az email kliensedet az adatokkal.</div>
+
+          <div class="success-message" id="successMsg">
+            <h4>✓ Kész!</h4>
+            <p>Az email kliensed megnyílt. Csak küldd el, és 24 órán belül válaszolunk.</p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="szolgaltatasok.html">Szolgáltatások</a> ·
+    <a href="folyamat.html">Folyamat</a> ·
+    <a href="munkaink.html">Munkáink</a> ·
+    <a href="rolunk.html">Rólunk</a> ·
+    <a href="gyik.html">GYIK</a> ·
+    <a href="kapcsolat.html">Kapcsolat</a>
+  </div>
+  <div style="margin-top: 16px;">
+    Készült <span class="heart">♥</span>-tel a Suliinfo csapatától · &copy; 2026
+  </div>
+</footer>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzvTtb0_1S0p7gcZf_QyKvg2ilk8EOEM6kTwK5QWghj_O29ORc4ZSXD5bOOwbtDZeXUzQ/exec";
+const SECRET_TOKEN = "asdjnruopnvasffnalpkfangkjnsdnaujnkngdsfmappkdfmsd";
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector(".submit-btn");
+  const data = new FormData(form);
+
+  btn.disabled = true;
+  btn.textContent = "Küldés folyamatban...";
+
+  const payload = {
+    token: SECRET_TOKEN,
+    name: data.get("name"),
+    email: data.get("email"),
+    organization: data.get("organization"),
+    service: data.get("service"),
+    message: data.get("message"),
+    website: data.get("website") // honeypot mező
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors", // FONTOS, lásd lent
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+
+    // no-cors miatt nem tudjuk olvasni a választ, de ha nem dobott hibát, sikeres
+    document.getElementById("successMsg").classList.add("show");
+    form.reset();
+    btn.textContent = "Elküldve ✓";
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = "Küldés ✉️";
+    alert("Hoppá, valami hiba történt. Próbáld újra, vagy írj közvetlenül: suliinfo63@gmail.com");
+  }
+}
+</script>
+
+</body>
+</html>
